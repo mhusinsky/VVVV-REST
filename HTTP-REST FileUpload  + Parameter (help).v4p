@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\Users\JL\Documents\GitHub\VVVV-REST\HTTP-REST FileUpload  + Parameter (help).v4p" scrollx="0" scrolly="-360" systemname="HTTP-REST FileUpload  + Parameter (help)" filename="D:\pduser-profiles\Leinberger.Jochen\Documents\_Projects_Code\VVVV-REST\HTTP-REST FileUpload  + Parameter (help).v4p">
-   <BOUNDS type="Window" left="20265" top="-10185" width="19785" height="14670">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
+   <PATCH nodename="C:\vvvv\git\VVVV-REST\HTTP-REST FileUpload  + Parameter (help).v4p" scrollx="0" scrolly="-360" systemname="HTTP-REST FileUpload  + Parameter (help)" filename="D:\pduser-profiles\Leinberger.Jochen\Documents\_Projects_Code\VVVV-REST\HTTP-REST FileUpload  + Parameter (help).v4p">
+   <BOUNDS type="Window" left="480" top="0" width="19785" height="14670">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="92" systemname="IOBox (String)">
    <BOUNDS type="Node" left="585" top="855" width="2940" height="270">
@@ -192,7 +192,7 @@
    </NODE>
    <LINK srcnodeid="159" srcpinname="Output" dstnodeid="162" dstpinname="Y Input Value">
    </LINK>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="IOBox (String)" nodename="IOBox (String)" componentmode="InABox" id="347">
    <BOUNDS type="Node" left="1200" top="2940" width="100" height="100">
@@ -398,7 +398,7 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Key Value Parameter Bin Size|">
    </PIN>
    </NODE>
-   <NODE systemname="Renderer (TTY)" nodename="Renderer (TTY)" componentmode="InAWindow" id="489">
+   <NODE systemname="Renderer (TTY)" nodename="Renderer (TTY)" componentmode="Hidden" id="489">
    <BOUNDS type="Node" left="10110" top="2565" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="10110" top="2565" width="2400" height="1800">
@@ -413,7 +413,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="7260" top="7215" width="1785" height="570">
    </BOUNDS>
-   <PIN pinname="Input String" visible="1" slicecount="2" values="image/jgep,image/png">
+   <PIN pinname="Input String" visible="1" slicecount="2" values="image/jpeg,image/png">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="2">
    </PIN>
@@ -500,18 +500,6 @@
    </NODE>
    <LINK srcnodeid="536" srcpinname="Output String" dstnodeid="410" dstpinname="Value">
    </LINK>
-   <NODE systemname="HTTP_Attach_File (Network 1.0)" filename="plugins\NetworkHTTP-REST\NetworkHTTP-REST.csproj" nodename="HTTP_Attach_File (Network 1.0)" componentmode="Hidden" id="561">
-   <BOUNDS type="Node" left="6120" top="8520" width="2355" height="270">
-   </BOUNDS>
-   <PIN pinname="File" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="530" srcpinname="Output String" dstnodeid="561" dstpinname="File Name">
-   </LINK>
-   <LINK srcnodeid="527" srcpinname="Output String" dstnodeid="561" dstpinname="File Type">
-   </LINK>
-   <LINK srcnodeid="395" srcpinname="Content" dstnodeid="561" dstpinname="File">
-   </LINK>
    <NODE systemname="RegExpr (String)" nodename="RegExpr (String)" componentmode="Hidden" id="563">
    <BOUNDS type="Node" left="1215" top="12975" width="100" height="100">
    </BOUNDS>
@@ -534,6 +522,8 @@
    <PIN pinname="BaseURL" visible="1">
    </PIN>
    <PIN pinname="Execute" visible="1">
+   </PIN>
+   <PIN pinname="File Upload" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="358" srcpinname="Output Enum" dstnodeid="564" dstpinname="HttpMethod">
@@ -565,8 +555,6 @@
    </LINKPOINT>
    <LINKPOINT x="4665" y="9233">
    </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="561" srcpinname="File Upload" dstnodeid="564" dstpinname="File Upload">
    </LINK>
    <NODE systemname="Stallone (String)" nodename="Stallone (String)" componentmode="Hidden" id="565">
    <BOUNDS type="Node" left="1215" top="11850" width="100" height="100">
@@ -689,5 +677,39 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="347" srcpinname="Output String" dstnodeid="564" dstpinname="BaseURL">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="581" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6135" top="7905" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6135" top="7905" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="file">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="file">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Name">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="HTTP_Attach_File (Network 1.0)" filename="plugins\NetworkHTTP-REST\NetworkHTTP-REST.csproj" nodename="HTTP_Attach_File (Network 1.0)" componentmode="Hidden" id="582">
+   <BOUNDS type="Node" left="6120" top="8520" width="2355" height="270">
+   </BOUNDS>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="530" srcpinname="Output String" dstnodeid="582" dstpinname="File Name">
+   </LINK>
+   <LINK srcnodeid="527" srcpinname="Output String" dstnodeid="582" dstpinname="File Type">
+   </LINK>
+   <LINK srcnodeid="395" srcpinname="Content" dstnodeid="582" dstpinname="File">
+   </LINK>
+   <LINK srcnodeid="582" srcpinname="File Upload" dstnodeid="564" dstpinname="File Upload">
+   </LINK>
+   <LINK srcnodeid="581" srcpinname="Output String" dstnodeid="582" dstpinname="Name">
    </LINK>
    </PATCH>

@@ -27,6 +27,7 @@ namespace VVVV.Nodes
 {
 	public struct FileUpload
 	{
+		public string Name;
 		public string FileType;
 		public Stream FileContent; //byte[] FileContent;
 		public string FileName; 
@@ -255,7 +256,7 @@ namespace VVVV.Nodes
 								{
 									FLogger.Log(LogType.Message, "File Uplaod! Name:"+FileData[ii].FileName+" File Type:"+FileData[ii].FileType);
 									//request[index].AddFile(FileData[ii].FileName, FileData[ii].FileContent, FileData[ii].FileName, FileData[ii].FileType);
-									request[index].AddFile("name", BytestreamToArray(FileData[ii].FileContent), "name");
+									request[index].AddFile(FileData[ii].Name, BytestreamToArray(FileData[ii].FileContent), FileData[ii].FileName);
 									//request[index].AddParameter("", BytestreamToArray(FileData[ii].FileContent), ParameterType.RequestBody); // tried to overcome forced multipart behaviert. 
 								}				
 							}
@@ -582,6 +583,9 @@ namespace VVVV.Nodes
 		public class HTTP_Attach_FileNode : IPluginEvaluate
 		{		
 			#region fields & pins		
+			[Input("Name", DefaultString = "file")]
+			public ISpread<string> FName;
+			
 			[Input("File")]
 			public ISpread<Stream> FInputFile;
 			
@@ -613,6 +617,7 @@ namespace VVVV.Nodes
 						byteStream.Position = 0; // resetting the byte stream position is important otherwise the stream won't be read in the next frame!
 						
 						var newFile = new FileUpload();
+						newFile.Name = FName[i];
 						newFile.FileType = FInputFileType[i];
 						newFile.FileContent = byteStream; //BytestreamToArray(byteStream);
 						newFile.FileName = FInputFileName[i];
